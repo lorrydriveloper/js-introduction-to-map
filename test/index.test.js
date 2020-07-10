@@ -7,4 +7,9 @@ describe("my map-like functions", () => {
       expect(mapToNegative(baseArr)).to.eql(baseArr.map((e) => e * -1));
     });
   });
+  describe("mapNoChange return an array with the original values", () => {
+    it("should no transform the original values", () => {
+      expect(mapNoChange(baseArr)).to.eql(baseArr);
+    });
+  });
 });
