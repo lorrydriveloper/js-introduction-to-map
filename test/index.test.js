@@ -1,7 +1,7 @@
 // test here
+const baseArr = [1, 3, 5, 8, 9, -5];
 
 describe("my map-like functions", () => {
-  const baseArr = [1, 3, 5, 8, 9, -5];
   describe("mapToNegative return an array with the original values made negative", () => {
     it("should transform in negative the original values", () => {
       expect(mapToNegative(baseArr)).to.eql(baseArr.map((e) => e * -1));
@@ -26,7 +26,7 @@ describe("my map-like functions", () => {
 });
 
 describe("My reduce-like methods", () => {
-  const baseArr = [1, -5, true, 'CYF']
+  const reduceArr = [1, -5, true, "CYF"];
 
   describe("reduceToTotal returns total from array when no stating point is given", () => {
     it("should return the total sum of given array", () => {
@@ -43,5 +43,28 @@ describe("My reduce-like methods", () => {
       );
     });
   });
+  describe("reduceToAllTrue returns true if all values on given array are truthy", () => {
+    it("should return true if all values are truthy", () => {
+      expect(reduceToAllTrue(reduceArr)).to.be.true;
+    });
+  });
+  describe("reduceToAllTrue returns false if any value is falsy", () => {
+    it("should return true if all values are truthy", () => {
+      reduceArr.push(false);
+      expect(reduceToAllTrue(reduceArr)).to.be.false;
+    });
+  });
+  describe("reduceToAnyTrue returns true when a true value is present", function () {
+    it("should return true if any value is truthy", function () {
+      const sourceArray = [false, null, null, null, true];
+      expect(reduceToAnyTrue(sourceArray)).to.equal(true);
+    });
+  });
 
+  describe("reduceToAnyTrue returns false when no true value is present", function () {
+    it("reduces correctly", function () {
+      const sourceArray = [false, null, null, null];
+      expect(reduceToAnyTrue(sourceArray)).to.equal(false);
+    });
+  });
 });
